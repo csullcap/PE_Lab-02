@@ -1,3 +1,7 @@
+import { useParams } from "react-router-dom";
+
 export default function Laboratorio() {
-  return <div>Laboratorio</div>;
+  const { id } = useParams();
+
+  return <div>Laboratorio {id}</div>;
 }

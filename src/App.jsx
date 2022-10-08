@@ -20,7 +20,7 @@ export default function App() {
             <Link to="/mis-matriculas">Mis Matriculas</Link>
           </li>
           <li>
-            <Link to="/laboratorio">Laboratorio</Link>
+            <Link to="/laboratorio/gfdgd">Laboratorio</Link>
           </li>
         </ul>
       </nav>
@@ -28,7 +28,7 @@ export default function App() {
       <Routes>
         <Route path="/nueva-matricula" element={<NuevaMatricula />} />
         <Route path="/mis-matriculas" element={<MisMatriculas />} />
-        <Route path="/laboratorio" element={<Laboratorio />} />
+        <Route path="/laboratorio/:id" element={<Laboratorio />} />
         <Route path="/" element={<Home />} />
       </Routes>
     </>

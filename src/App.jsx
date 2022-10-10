@@ -10,20 +10,14 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
-import AccountCircle from "@mui/icons-material/AccountCircle";
-import Switch from "@mui/material/Switch";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import FormGroup from "@mui/material/FormGroup";
-import MenuItem from "@mui/material/MenuItem";
-import Menu from "@mui/material/Menu";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import ClassOutlinedIcon from "@mui/icons-material/ClassOutlined";
-import Button from "@mui/material/Button";
+
+import logo from "./assets/logo.png";
 
 const drawerWidth = 260;
 const navItems = ["Home", "About", "Contact"];
@@ -93,29 +87,50 @@ export default function App() {
             color="inherit"
             aria-label="menu"
             sx={{ mr: 2, color: "white" }}
+            onClick={handleDrawerToggle}
           >
             <MenuIcon />
           </IconButton>
 
           <Box sx={{ flexGrow: 1 }}></Box>
           {auth && (
-            <Box>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                color="inherit"
-              >
-                <ClassOutlinedIcon fontSize="large" sx={{ color: "white" }} />
-                <Typography variant="h6" sx={{ color: "white" }}>
-                  Unsa - Horarios
-                </Typography>
-              </IconButton>
+            <Box sx={{ display: "flex" }}>
+              <Box
+                component="img"
+                sx={{
+                  height: 30,
+                  width: 30,
+                  borderRadius: "50%",
+                  marginRight: 1,
+                }}
+                alt="The house from the offer."
+                src={logo}
+              />
+              <Typography variant="h6" sx={{ color: "white" }}>
+                Unsa - Horarios
+              </Typography>
             </Box>
           )}
         </Toolbar>
       </AppBar>
+      <Box component="nav">
+        <Drawer
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
+          }}
+        >
+          {drawer}
+        </Drawer>
+      </Box>
 
       {/*       <Box>
         <AppBar component="nav">

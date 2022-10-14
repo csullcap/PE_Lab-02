@@ -3,44 +3,39 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../AuthContext";
 import { Box } from "@mui/system";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { CircularProgress } from "@mui/material";
 
 export default function Login() {
   const { signInWithGoogle, user } = useAuth();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (user != null) {
-      navigate("/mis-matriculas", { replace: true });
-    }
-  }, [user]);
-
-  const handleGoogleSignin = async () => {
+  const handleLogin = async () => {
     try {
       await signInWithGoogle();
     } catch (error) {
-      setError(error.message);
+      console.error(error.message);
     }
   };
 
   return (
-    <>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          paddingTop: "20px",
-          flexDirection: "column",
-        }}
-      >
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+        flexDirection: "column",
+      }}
+    >
+      <>
         <Typography variant="h4" component="h1" gutterBottom>
           Login
         </Typography>
-        <Button variant="contained" onClick={handleGoogleSignin}>
+        <Button variant="contained" onClick={handleLogin}>
           Iniciar sesión con Google
         </Button>
-      </Box>
-    </>
+      </>
+    </Box>
   );
 }

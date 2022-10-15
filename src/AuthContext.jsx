@@ -32,7 +32,6 @@ export function AuthProvider({ children }) {
   const unsubuscribe = onAuthStateChanged(auth, (user) => {
     setUser(user);
     setLoading(false);
-    if (user) navigate("/mis-matriculas", { replace: true });
   });
 
   useEffect(() => {

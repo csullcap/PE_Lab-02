@@ -18,6 +18,6 @@ export default function PrivateRoute({ children }) {
         <CircularProgress />
       </Box>
     );
-  if (!user) return <Navigate to="/login" replace={true} />;
-  return children;
+
+  return user ? children : <Navigate to="/login" replace={true} />;
 }

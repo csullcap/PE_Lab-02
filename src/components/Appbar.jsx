@@ -16,7 +16,7 @@ import logo from "../assets/logo.png";
 import { useAuth } from "../AuthContext";
 import { Avatar, Button } from "@mui/material";
 
-const drawerWidth = 260;
+const drawerWidth = 300;
 const navItems = [
   { name: "Home", path: "/" },
   { name: "Mis Matriculas", path: "/mis-matriculas" },
@@ -25,7 +25,7 @@ const navItems = [
 ];
 
 export default function Appbar() {
-  const { logout, user } = useAuth();
+  const { logout, user, loading } = useAuth();
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -45,7 +45,7 @@ export default function Appbar() {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6">Horario-unsa</Typography>
-      <Typography variant="h5">
+      <Typography variant="h6">
         {user !== null ? user.displayName : "Anonimo"}
       </Typography>
       <Typography variant="h5">Horario-unsa</Typography>
@@ -55,12 +55,11 @@ export default function Appbar() {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem
-            key={item.name}
-            onClick={() => navigate(item.path)}
-            disablePadding
-          >
-            <ListItemButton sx={{ textAlign: "center" }}>
+          <ListItem key={item.name} disablePadding>
+            <ListItemButton
+              sx={{ textAlign: "center" }}
+              onClick={() => navigate(item.path, { replace: true })}
+            >
               <ListItemText primary={item.name} />
             </ListItemButton>
           </ListItem>
@@ -68,19 +67,6 @@ export default function Appbar() {
       </List>
     </Box>
   );
-
-  /*   const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
-
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
- */
 
   return (
     <>
@@ -96,9 +82,7 @@ export default function Appbar() {
           >
             <MenuIcon />
           </IconButton>
-
           <Box sx={{ flexGrow: 1 }}></Box>
-
           <Box sx={{ display: "flex" }}>
             <Box
               component="img"
@@ -117,24 +101,26 @@ export default function Appbar() {
           </Box>
         </Toolbar>
       </AppBar>
-      <Box component="nav">
-        <Drawer
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
-          sx={{
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-      </Box>
+      {user !== null && (
+        <Box component="nav">
+          <Drawer
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true,
+            }}
+            sx={{
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+        </Box>
+      )}
     </>
   );
 }

@@ -10,19 +10,13 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { useAuth } from "../AuthContext";
-import { Avatar, Button } from "@mui/material";
+import { Avatar, Button, ListItemIcon } from "@mui/material";
 
 const drawerWidth = 300;
-const navItems = [
-  { name: "Home", path: "/" },
-  { name: "Mis Matriculas", path: "/mis-matriculas" },
-  { name: "Laboratorio", path: "/laboratorio" },
-  { name: "Nueva Matricula", path: "/nueva-matricula" },
-];
 
 export default function Appbar() {
   const { logout, user, loading } = useAuth();
@@ -43,28 +37,68 @@ export default function Appbar() {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6">Horario-unsa</Typography>
-      <Typography variant="h6">
-        {user !== null ? user.displayName : "Anonimo"}
-      </Typography>
-      <Typography variant="h5">Horario-unsa</Typography>
-      <Button variant="contained" onClick={handleLogout}>
-        Cerrar sesión
-      </Button>
+    <Box onClick={handleDrawerToggle}>
+      <Box sx={{ display: "flex", alignItems: "center", p: 2 }}>
+        <img src={logo} alt="logo" width="50" />
+        <Typography variant="h6" noWrap component="div" sx={{ ml: 2 }}>
+          Laboratorios - UNSA
+        </Typography>
+      </Box>
       <Divider />
-      <List>
-        {navItems.map((item) => (
-          <ListItem key={item.name} disablePadding>
-            <ListItemButton
-              sx={{ textAlign: "center" }}
-              onClick={() => navigate(item.path, { replace: true })}
-            >
-              <ListItemText primary={item.name} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          p: 2,
+        }}
+      >
+        <Box
+          component="img"
+          sx={{
+            height: 90,
+            width: 90,
+            borderRadius: "50%",
+          }}
+          src={user != null ? user.photoURL : ""}
+          alt="logo"
+        />
+      </Box>
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+          p: 2,
+        }}
+      >
+        <Typography variant="h7" noWrap component="div">
+          {user != null ? user.displayName : ""}
+        </Typography>
+        <Typography variant="h7" noWrap component="div">
+          {user != null ? user.email : ""}
+        </Typography>
+      </Box>
+
+      <Divider />
+
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Button
+          variant="contained"
+          color="error"
+          onClick={handleLogout}
+          sx={{ mt: 2 }}
+        >
+          Cerrar Sesión
+        </Button>
+      </Box>
     </Box>
   );
 
@@ -92,7 +126,6 @@ export default function Appbar() {
                 borderRadius: "50%",
                 marginRight: 1,
               }}
-              alt="The house from the offer."
               src={logo}
             />
             <Typography variant="h6" sx={{ color: "white" }}>

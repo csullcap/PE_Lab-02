@@ -13,21 +13,31 @@ export default function App() {
     <>
       <AuthProvider>
         <Appbar />
+
         <Box component="main" sx={{ p: 3, height: "100%" }}>
           <Routes>
             <Route path="/login" element={<Login />} />
             <Route
-              path="/*"
+              path="/"
               element={
                 <PrivateRoute>
-                  <Routes>
-                    <Route path="/mis-matriculas" element={<MisMatriculas />} />
-                    <Route
-                      path="/nueva-matricula"
-                      element={<NuevaMatricula />}
-                    />
-                    <Route path="/laboratorio/:id" element={<Laboratorio />} />
-                  </Routes>
+                  <MisMatriculas />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/laboratorio/:id"
+              element={
+                <PrivateRoute>
+                  <Laboratorio />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/nueva-matricula"
+              element={
+                <PrivateRoute>
+                  <NuevaMatricula />
                 </PrivateRoute>
               }
             />

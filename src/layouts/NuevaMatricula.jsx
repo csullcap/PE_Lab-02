@@ -2,7 +2,6 @@
 import React from "react";
 import { collection, doc, getDocs, query, where , getDoc, setDoc} from "firebase/firestore";
 import { db } from "../Firebase";
-import { async } from "@firebase/util";
 import { MenuItem, TextField, Grid , Typography, Button, Snackbar} from "@mui/material";
 import Alert from '@mui/material/Alert';
 import { Box } from "@mui/system";
@@ -62,12 +61,20 @@ export default function NuevaMatricula() {
   },[selectedLabID]);
 
   const handleMatricular = () => {
+    if(selectedGroupID ==="" ){
+      return console.log("Error");
+    }
+    if(selectedLabID === ""){
+      return console.log("Error");
+    }
     matricular();
     console.log(user);
   }
   
   const matricular = () => {
+
     const docRef = doc(db, "laboratorios", selectedGroupID);
+
     getDoc(docRef)
     .then(docSnap  => {
       if (!docSnap.data()) {
@@ -97,9 +104,16 @@ export default function NuevaMatricula() {
         ...doc,
         matriculados: addUser
       })
-      
+
       setMessage({message: "Matricula registrada", valid: true})
       handleClick();
+
+      
+      const newLabs = labs.filter(item  => item.id !== selectedLabID);
+      setSelectedLabID("");
+      setSelectedGroupID("");
+      setLabs(newLabs);
+      
     })
 
   }

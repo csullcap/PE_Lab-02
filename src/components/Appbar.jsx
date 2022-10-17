@@ -37,7 +37,7 @@ export default function Appbar() {
   };
 
   const drawer = (
-    <Box onClick={handleDrawerToggle}>
+    <Box>
       <Box sx={{ display: "flex", alignItems: "center", p: 2 }}>
         <img src={logo} alt="logo" width="50" />
         <Typography variant="h6" noWrap component="div" sx={{ ml: 2 }}>
@@ -135,7 +135,7 @@ export default function Appbar() {
         </Toolbar>
       </AppBar>
       {user !== null && (
-        <Box component="nav">
+        <Box component="nav" onClick={handleDrawerToggle}>
           <Drawer
             variant="temporary"
             open={mobileOpen}

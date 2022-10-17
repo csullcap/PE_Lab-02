@@ -18,9 +18,9 @@ export const useAuth = () => {
 };
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
-  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(true);
 
   const signInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
@@ -29,15 +29,13 @@ export function AuthProvider({ children }) {
 
   const logout = () => signOut(auth);
 
-  const unsubuscribe = onAuthStateChanged(auth, (user) => {
-    setUser(user);
-    setLoading(false);
-    console.log(user);
-  });
-
   useEffect(() => {
-    return () => unsubuscribe();
-  }, []);
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      setUser(user);
+      setLoading(false);
+    });
+    return unsubscribe;
+  }, [navigate]);
 
   return (
     <AuthContext.Provider

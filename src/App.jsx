@@ -7,16 +7,21 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import PrivateRoute from "./components/PrivateRoute";
 import { AuthProvider } from "./AuthContext";
+import { Fab } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "./AuthContext";
 
 export default function App() {
+  const navigate = useNavigate();
+  const { signInWithGoogle, user, logout, loading } = useAuth();
+
   return (
     <>
       <AuthProvider>
         <Appbar />
-
         <Box component="main" sx={{ p: 3, height: "100%" }}>
           <Routes>
-            <Route path="/login" element={<Login />} />
             <Route
               path="/"
               element={
@@ -41,27 +46,26 @@ export default function App() {
                 </PrivateRoute>
               }
             />
+            <Route path="/login" element={<Login user={user} />} />
             <Route path="*" element={<Navigate to="/login" replace={true} />} />
           </Routes>
         </Box>
-      </AuthProvider>
 
-      {/* <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/nueva-matricula">Nueva Matricula</Link>
-          </li>
-          <li>
-            <Link to="/mis-matriculas">Mis Matriculas</Link>
-          </li>
-          <li>
-            <Link to="/laboratorio/gfdgd">Laboratorio</Link>
-          </li>
-        </ul>
-      </nav> */}
+        <Fab
+          color="primary"
+          aria-label="add"
+          component={Link}
+          to="/nueva-matricula"
+          sx={{
+            position: "fixed",
+            bottom: 20,
+            right: 20,
+            color: "#fff",
+          }}
+        >
+          <AddIcon />
+        </Fab>
+      </AuthProvider>
     </>
   );
 }

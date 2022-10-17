@@ -3,13 +3,26 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router } from "react-router-dom";
 import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
-import { theme } from "./theme";
 import { AuthProvider } from "./AuthContext";
 import App from "./App";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider theme={theme}>
+    <ThemeProvider
+      theme={{
+        palette: {
+          primary: {
+            main: "#00acc1",
+          },
+          secondary: {
+            main: "#19857b",
+          },
+          error: {
+            main: red.A400,
+          },
+        },
+      }}
+    >
       <CssBaseline />
       <Router>
         <AuthProvider>

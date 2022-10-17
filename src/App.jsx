@@ -38,6 +38,19 @@ export default function App() {
                 >
                   <AddIcon />
                 </Fab>
+                <Paper
+        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+        elevation={3}
+      >
+        <BottomNavigation showLabels>
+          <BottomNavigationAction
+            label="Mis Matriculas"
+            icon={<ArchiveIcon />}
+            component={Link}
+            to="/"
+          />
+        </BottomNavigation>
+      </Paper>
               </PrivateRoute>
             }
           />
@@ -60,15 +73,7 @@ export default function App() {
                 >
                   <AddIcon />
                 </Fab>
-              </PrivateRoute>
-            }
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="*" element={<Navigate to="/login" replace={true} />} />
-        </Routes>
-      </Box>
-
-      <Paper
+                <Paper
         sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
         elevation={3}
       >
@@ -81,6 +86,13 @@ export default function App() {
           />
         </BottomNavigation>
       </Paper>
+              </PrivateRoute>
+            }
+          />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" replace={true} />} />
+        </Routes>
+      </Box>
     </>
   );
 }

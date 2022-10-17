@@ -129,7 +129,7 @@ export default function Appbar() {
               src={logo}
             />
             <Typography variant="h6" sx={{ color: "white" }}>
-              Unsa - Horarios
+              Laboratorios - UNSA
             </Typography>
           </Box>
         </Toolbar>

@@ -5,7 +5,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { AuthProvider } from "./AuthContext";
 import App from "./App";
-import { theme } from "./theme";
+import theme from "./Theme";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

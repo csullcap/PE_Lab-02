@@ -5,24 +5,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { AuthProvider } from "./AuthContext";
 import App from "./App";
+import theme from "./theme";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <ThemeProvider
-      theme={{
-        palette: {
-          primary: {
-            main: "#00acc1",
-          },
-          secondary: {
-            main: "#19857b",
-          },
-          error: {
-            main: red.A400,
-          },
-        },
-      }}
-    >
+    <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
         <AuthProvider>

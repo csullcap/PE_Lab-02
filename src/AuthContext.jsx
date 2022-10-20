@@ -3,7 +3,6 @@ import {
   GoogleAuthProvider,
   signInWithRedirect,
   onAuthStateChanged,
-  getRedirectResult,
   signOut,
 } from "firebase/auth";
 import { auth } from "./Firebase";
@@ -33,6 +32,7 @@ export function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setUser(user);
       setLoading(false);
+      if (user) navigate("/", { replace: true });
     });
     return unsubscribe;
   }, [navigate]);

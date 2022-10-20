@@ -1,4 +1,4 @@
-import Login from "./layouts/login";
+import Login from "./layouts/Login";
 import MisMatriculas from "./layouts/MisMatriculas";
 import NuevaMatricula from "./layouts/NuevaMatricula";
 import Appbar from "./components/Appbar";
@@ -39,18 +39,18 @@ export default function App() {
                   <AddIcon />
                 </Fab>
                 <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-        elevation={3}
-      >
-        <BottomNavigation showLabels>
-          <BottomNavigationAction
-            label="Mis Matriculas"
-            icon={<ArchiveIcon />}
-            component={Link}
-            to="/"
-          />
-        </BottomNavigation>
-      </Paper>
+                  sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+                  elevation={3}
+                >
+                  <BottomNavigation showLabels>
+                    <BottomNavigationAction
+                      label="Mis Matriculas"
+                      icon={<ArchiveIcon />}
+                      component={Link}
+                      to="/"
+                    />
+                  </BottomNavigation>
+                </Paper>
               </PrivateRoute>
             }
           />
@@ -74,18 +74,18 @@ export default function App() {
                   <AddIcon />
                 </Fab>
                 <Paper
-        sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
-        elevation={3}
-      >
-        <BottomNavigation showLabels>
-          <BottomNavigationAction
-            label="Mis Matriculas"
-            icon={<ArchiveIcon />}
-            component={Link}
-            to="/"
-          />
-        </BottomNavigation>
-      </Paper>
+                  sx={{ position: "fixed", bottom: 0, left: 0, right: 0 }}
+                  elevation={3}
+                >
+                  <BottomNavigation showLabels>
+                    <BottomNavigationAction
+                      label="Mis Matriculas"
+                      icon={<ArchiveIcon />}
+                      component={Link}
+                      to="/"
+                    />
+                  </BottomNavigation>
+                </Paper>
               </PrivateRoute>
             }
           />
